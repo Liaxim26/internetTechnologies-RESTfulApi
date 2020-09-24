@@ -21,7 +21,8 @@ if ($method == 'GET') {
 } elseif ($method == 'POST') {
 	if ($Module == 'dishes') {
 		if(isset($id)){
-			print_r('qwe');
+			editingDishes($_POST, $id, $json);
+			echo json_encode($json[$id]);
 		} else addDishes($_POST, $json);
 	}
 }
