@@ -31,20 +31,16 @@ function editingDishes($post, $id, $json) {
 	}
 }
 
-function delDishes() {
-
-	$file = file_get_contents('php/data.json');         // Открыть файл data.json
-	$taskList=json_decode($file,TRUE);                  // Декодировать в массив 
-   	foreach ( $taskList  as $key => $value){        // Найти в массиве  
-      if (in_array( $current, $value)) {           // Переменную $current
-                unset($taskList[$key]);             // после обнаружения удалить
-          }
-      } 
-	file_put_contents('php/data.json',json_encode($taskList)); // Перекодировать в формат и записать в файл.
-	unset($taskList);                           // Очистить переменную $taskList 
-	file_put_contents('php/data.json',json_encode($taskList)); // Перекодировать в формат и записать в файл.
-	unset($taskList); 
-
+function delDishes($id, $json) {
+   	$res = json_encode($json[$id]);
+	if ($res == 'null') echo Error('404', 'Dish not found');
+	else {
+		$taskList = $json;
+		unset($json);
+		unset($taskList[$id]);
+		file_put_contents('users.json',json_encode($taskList));     
+		unset($taskList); 
+	}
 }
 
 

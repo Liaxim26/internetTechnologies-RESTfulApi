@@ -25,6 +25,12 @@ if ($method == 'GET') {
 			echo json_encode($json[$id]);
 		} else addDishes($_POST, $json);
 	}
+} elseif ($method == 'DELETE') {
+	if ($Module == 'dishes') {
+		if(isset($id)){
+			delDishes($id, $json);
+		} else echo Error('404', 'Dish not found');
+	}
 }
 
 
