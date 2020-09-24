@@ -12,7 +12,9 @@ $id = $params[1];
 
 if ($Module == 'dishes') {
 	if(isset($id)){
-		echo json_encode($json[$id]);
+		$res = json_encode($json[$id]);
+		if ($res == 'null') echo Error('404', 'Dish not found');
+		else echo $res;
 	} else {
 		echo json_encode($json);
 	}
