@@ -9,13 +9,18 @@ $method = $_SERVER['REQUEST_METHOD'];
 
 $Module = $params[0];
 $id = $params[1];
+$tag = $params[2];
 
 if ($method == 'GET') {
 	if ($Module == 'dishes') {
 		if(isset($id)){
+			if ($id == 'tag') {
+				findDishes($tag, $json);
+			} else {
 			$res = json_encode($json[$id]);
 			if ($res == 'null') echo Error('404', 'Dish not found');
 			else echo $res;
+			}
 		} else echo json_encode($json);		
 	}
 } elseif ($method == 'POST') {

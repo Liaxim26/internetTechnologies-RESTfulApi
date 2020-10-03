@@ -43,5 +43,16 @@ function delDishes($id, $json) {
 	}
 }
 
+function findDishes($tag, $json) {
+
+
+	foreach ($json as $key => $value) {
+		if ($tag == ($json[$key]->tags)) {
+			print_r($key);
+		}
+		//echo json_encode($json[$key]->tags);
+	}
+}
+
 
  ?>
